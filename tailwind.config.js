@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      logo: ['Anton', 'sans-serif']
+      logo: ['Anton', 'sans-serif'],
+      main: ['Inter', 'sans-serif']
     }
   },
   plugins: [],
