@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
+import { DevListComponent } from './dev-list/dev-list.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,8 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     BodyComponent,
     FooterComponent,
+    DevListComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule

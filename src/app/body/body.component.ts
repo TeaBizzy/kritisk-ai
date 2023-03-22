@@ -1,16 +1,19 @@
-import { Component, SimpleChange } from '@angular/core';
+import { Component } from '@angular/core';
 import { predict } from 'src/utils/img-classifier';
 import Chart from 'chart.js/auto';
+
 
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
+
+
 export class BodyComponent {
   fileName: string = '';
   imgSrc: any = '';
-  prediciton: any;
+  prediction: any;
   chartData: any;
 
   ngOnInit() {
@@ -53,8 +56,8 @@ export class BodyComponent {
 
       predict(img)
         .then((prediction: any) => {
-          this.prediciton = prediction;
-          this.chartData.data.datasets[0].data = this.prediciton.map((result: any) => result.probability)
+          this.prediction = prediction;
+          this.chartData.data.datasets[0].data = this.prediction.map((result: any) => result.probability)
           this.chartData.update()
         })
         .catch((err: any) => {})
