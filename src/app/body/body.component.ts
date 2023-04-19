@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { predict } from 'src/utils/img-classifier';
 import Chart from 'chart.js/auto';
+import { load } from '@teachablemachine/image';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class BodyComponent {
   imgSrc: any = '';
   prediction: any;
   chartData: any;
+  loading: boolean = false;
 
   ngOnInit() {
     this.createChart()
@@ -54,11 +56,13 @@ export class BodyComponent {
       let img = new Image();
       img.src = typeof(reader.result) === 'string' ? reader.result : '';
 
+      this.loading = true;
       predict(img)
         .then((prediction: any) => {
           this.prediction = prediction;
           this.chartData.data.datasets[0].data = this.prediction.map((result: any) => result.probability)
           this.chartData.update()
+          this.loading = false;
         })
         .catch((err: any) => {})
     })
