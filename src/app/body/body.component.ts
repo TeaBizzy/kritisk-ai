@@ -17,6 +17,7 @@ export class BodyComponent {
   prediction: any;
   chartData: any;
   loading: boolean = false;
+  btnText: string = 'Start!'
 
   ngOnInit() {
     this.createChart()
@@ -46,6 +47,10 @@ export class BodyComponent {
       })
   }
 
+  onSubmit(event: any): void {
+    event.preventDefault();
+  }
+
   onUpload(event: any): void {
     this.fileName = event.target.files[0].name
     const reader = new FileReader();
@@ -57,12 +62,14 @@ export class BodyComponent {
       img.src = typeof(reader.result) === 'string' ? reader.result : '';
 
       this.loading = true;
+      this.btnText = 'Loading...'
       predict(img)
         .then((prediction: any) => {
           this.prediction = prediction;
           this.chartData.data.datasets[0].data = this.prediction.map((result: any) => result.probability)
           this.chartData.update()
           this.loading = false;
+          this.btnText = 'Try Again'
         })
         .catch((err: any) => {})
     })
