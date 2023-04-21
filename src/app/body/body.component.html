@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="border-t-2 border-violet-400 flex w-10/12 my-4 justify-between items-center"></div>
-      <div [ngClass]="{'bg-gray-300 border-gray-500 hover:bg-gray-300 hover:border-gray-500' : loading}" class="bg-violet-300 rounded-md w-96 h-24 border-b-4 border-r-4 border-purple-400 hover:bg-purple-400 hover:border-violet-300">
+      <div [ngClass]="{'bg-gray-300 border-gray-500 hover:bg-gray-300 hover:border-gray-500' : loading}" class="bg-violet-300 rounded-md w-96 h-24 border-b-4 border-r-4 border-purple-400 hover:bg-purple-400 hover:border-violet-300" (click)="onClick($event)">
         <Label for="file">
           <div class="flex flex-row items-center justify-center h-full">
             <h1 class="text-3xl text-violet-900 font-main">{{btnText}}</h1>
@@ -23,24 +23,28 @@
     <input type="file" id="file" accept="image/*" (change)="onUpload($event)" class="hidden" [disabled]="loading">
     <!-- <img id="test" [ngClass]="imgSrc ? 'w-72' : 'w-0'" class="transition-all ease-in-out duration-1000 mt-4 rounded-md" src="{{ imgSrc }}"> -->
   </div>
-  <div [ngClass]="prediction ? 'w-full opacity-100' : 'w-0 opacity-0'" class="flex flex-col justify-center items-center w-full py-12 transition-all ease-in-out duration-1000">
-    <div class="w-64 h-64">
-      <canvas id="chart">{{ chartData }}</canvas>
+    <div [ngClass]="prediction.length > 0 ? 'opacity-100 transition-all ease-in-out duration-1000' : 'w-0 opacity-0'" class="flex flex-col justify-center items-center w-full py-12 transition-all ease-in-out duration-1000 delay-100">
+      <div class="w-64 h-64">
+        <canvas id="chart">{{ chartData }}</canvas>
+      </div>
+      <ng-container *ngIf="prediction.length > 0">
+        <div class="w-1/2 h-72 pt-12 flex flex-row justify-between justify-center text-purple-500 text-5xl font-main font-bold">
+          <div class="flex flex-col items-center justify-center w-1/3 h-full border-r-4 border-violet-400">
+            <h1>MODERN</h1>
+            <h2 [ngClass]="prediction[1].probability >= 80 ? 'text-lime-500' : 'text-white'" class="text-7xl pt-2">{{ prediction && prediction[1].probability }}%</h2>
+          </div>
+          <div class="flex flex-col items-center justify-center  w-1/3 h-full">
+            <h1>DATED</h1>
+            <h2 [ngClass]="{'text-rose-500' : prediction[0].probability >= 50}" class="text-7xl text-white pt-2">{{ prediction && prediction[0].probability }}%</h2>
+          </div>
+          <div class="flex flex-col items-center justify-center w-1/3 h-full border-l-4 border-violet-400">
+            <h1>VERY DATED</h1>
+            <h2 [ngClass]="{'text-rose-500' : prediction[2].probability >= 25}" class="text-7xl text-white pt-2">{{ prediction && prediction[2].probability }}%</h2>
+          </div>
+        </div>
+      </ng-container>
     </div>
-    <div class="w-1/2 h-72 pt-12 flex flex-row justify-between justify-center text-purple-500 text-5xl font-main font-bold">
-      <div class="flex flex-col items-center justify-center w-1/3 h-full border-r-4 border-violet-400">
-        <h1>{{ prediction[1].className.toUpperCase() }}</h1>
-        <h2 [ngClass]="prediction[1].probability >= 80 ? 'text-lime-500' : 'text-white'" class="text-7xl pt-2">{{ prediction[1].probability }}%</h2>
-      </div>
-      <div class="flex flex-col items-center justify-center  w-1/3 h-full">
-        <h1>{{ prediction[0].className.toUpperCase() }}</h1>
-        <h2 [ngClass]="{'text-rose-500' : prediction[0].probability >= 50}" class="text-7xl text-white pt-2">{{ prediction[0].probability }}%</h2>
-      </div>
-      <div class="flex flex-col items-center justify-center w-1/3 h-full border-l-4 border-violet-400">
-        <h1>{{ prediction[2].className.toUpperCase() }}</h1>
-        <h2 [ngClass]="{'text-rose-500' : prediction[2].probability >= 25}" class="text-7xl text-white pt-2">{{ prediction[2].probability }}%</h2>
-      </div>
-    </div>
-  </div>
-  <app-dev-list [foo]="prediction" class="w-full flex justify-center"></app-dev-list>
+    <ng-container *ngIf="prediction.length > 0">
+      <app-dev-list class="w-full flex justify-center"></app-dev-list>
+    </ng-container>
 </div>

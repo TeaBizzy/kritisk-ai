@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { predict } from 'src/utils/img-classifier';
 import Chart from 'chart.js/auto';
-import { load } from '@teachablemachine/image';
-
 
 @Component({
   selector: 'app-body',
@@ -14,13 +12,15 @@ import { load } from '@teachablemachine/image';
 export class BodyComponent {
   fileName: string = '';
   imgSrc: any = '';
-  prediction: any;
+  prediction: any[] = [];
   chartData: any;
   loading: boolean = false;
   btnText: string = 'Start!'
 
   ngOnInit() {
     this.createChart()
+    console.log(this.prediction);
+
   }
 
   createChart() {
@@ -49,6 +49,11 @@ export class BodyComponent {
 
   onSubmit(event: any): void {
     event.preventDefault();
+  }
+
+  onClick(event:any): void {
+    this.prediction = [];
+    console.log('update', this.prediction.length)
   }
 
   onUpload(event: any): void {
