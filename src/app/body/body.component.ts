@@ -51,14 +51,15 @@ export class BodyComponent {
     event.preventDefault();
   }
 
-  onClick(event:any): void {
-    this.prediction = [];
-    console.log('update', this.prediction.length)
-  }
+  // onClick(event:any): void {
+  //   this.prediction = [];
+  //   console.log('update', this.prediction.length)
+  // }
 
   onUpload(event: any): void {
     this.fileName = event.target.files[0].name
     const reader = new FileReader();
+    console.log(this.fileName);
 
     reader.addEventListener("load", () => {
       this.imgSrc = reader.result;

@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { DevListComponent } from './dev-list/dev-list.component';
-import { LoadingComponent } from './loading/loading.component';
+import { ImgUploaderComponent } from './img-uploader/img-uploader.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { LoadingComponent } from './loading/loading.component';
     BodyComponent,
     FooterComponent,
     DevListComponent,
-    LoadingComponent
+    ImgUploaderComponent,
   ],
   imports: [
     BrowserModule
