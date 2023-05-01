@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { predict } from 'src/utils/img-classifier';
 import Chart from 'chart.js/auto';
 
-
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -13,11 +12,15 @@ import Chart from 'chart.js/auto';
 export class BodyComponent {
   fileName: string = '';
   imgSrc: any = '';
-  prediction: any;
+  prediction: any[] = [];
   chartData: any;
+  loading: boolean = false;
+  btnText: string = 'Start!'
 
   ngOnInit() {
     this.createChart()
+    console.log(this.prediction);
+
   }
 
   createChart() {
@@ -44,6 +47,15 @@ export class BodyComponent {
       })
   }
 
+  onSubmit(event: any): void {
+    event.preventDefault();
+  }
+
+  onClick(event:any): void {
+    this.prediction = [];
+    console.log('update', this.prediction.length)
+  }
+
   onUpload(event: any): void {
     this.fileName = event.target.files[0].name
     const reader = new FileReader();
@@ -54,11 +66,15 @@ export class BodyComponent {
       let img = new Image();
       img.src = typeof(reader.result) === 'string' ? reader.result : '';
 
+      this.loading = true;
+      this.btnText = 'Loading...'
       predict(img)
         .then((prediction: any) => {
           this.prediction = prediction;
           this.chartData.data.datasets[0].data = this.prediction.map((result: any) => result.probability)
           this.chartData.update()
+          this.loading = false;
+          this.btnText = 'Try Again'
         })
         .catch((err: any) => {})
     })

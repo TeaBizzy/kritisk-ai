@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-dev-list',
@@ -6,5 +6,4 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./dev-list.component.css']
 })
 export class DevListComponent {
-  @Input() foo: any;
 }
