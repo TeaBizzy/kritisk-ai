@@ -7,6 +7,7 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { DevListComponent } from './dev-list/dev-list.component';
 import { ImgUploaderComponent } from './img-uploader/img-uploader.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ImgUploaderComponent } from './img-uploader/img-uploader.component';
     FooterComponent,
     DevListComponent,
     ImgUploaderComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule
