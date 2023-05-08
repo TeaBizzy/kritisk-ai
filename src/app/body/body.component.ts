@@ -4,7 +4,6 @@ import { predict } from 'src/utils/img-classifier';
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
-  styleUrls: ['./body.component.css']
 })
 
 
