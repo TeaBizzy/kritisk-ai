@@ -1,7 +1,5 @@
 <div class="flex flex-col items-center justify-center">
   <app-img-uploader (onUpload)="onUpload($event)" [loading]="loading" [btnText]="btnText"></app-img-uploader>
   <app-stats [prediction]="prediction"></app-stats>
-  <ng-container *ngIf="prediction.length > 0">
-    <app-dev-list class="w-full flex justify-center"></app-dev-list>
-  </ng-container>
+  <app-dev-list *ngIf="prediction.length > 0"></app-dev-list>
 </div>
