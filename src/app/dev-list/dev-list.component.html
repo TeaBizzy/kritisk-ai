@@ -2,30 +2,9 @@
   <div class="bg-violet-500 my-12 w-1/2 rounded-md py-6 flex flex-col justify-start items-center">
     <h1 class="font-main font-bold text-3xl text-white">Want to update your website?</h1>
     <h3 class="font-main font-bold text-xl text-slate-800">Contact an available developer below!</h3>
-    <div class="mt-4 border-t-2 border-violet-400 flex w-2/3 p-4 justify-between items-center">
-      <div class="flex items-center">
-        <img src="https://avatars.githubusercontent.com/u/111951212?v=4" class="w-16 rounded-full ring-slate-800 ring-4 ring-offset-0 mr-4">
-        <h1 class="font-main font-bold text-xl text-white">Stefan Talbot</h1>
-      </div>
-      <h1 class="font-main font-bold text-xl text-slate-800">satalbot@protonmail.com</h1>
-      <h1 class="font-main font-bold text-xl text-slate-800">705-434-7107</h1>
-    </div>
-    <div class="border-t-2 border-violet-400 flex w-2/3 p-4 justify-between items-center">
-      <div class="flex items-center">
-        <img src="https://cdn.discordapp.com/attachments/1037468923102236762/1088149270030471239/Screenshot_2023-03-01_123920.png" class="w-16 rounded-full ring-slate-800 ring-4 ring-offset-0 mr-4">
-        <h1 class="font-main font-bold text-xl text-white">David Figueroa</h1>
-      </div>
-      <h1 class="font-main font-bold text-xl text-slate-800">figueroadavid93@gmail.com</h1>
-      <h1 class="font-main font-bold text-xl text-slate-800">226-821-5040</h1>
-    </div>
-    <div class="border-y-2 border-violet-400 flex w-2/3 p-4 justify-between items-center">
-      <div class="flex items-center">
-        <img src="https://media.licdn.com/dms/image/sync/D5627AQFDkIbgUXAp0Q/articleshare-shrink_480/0/1682448347354?e=1683640800&v=beta&t=VYMBuXI-kYil5WaBzhmMZoX6Z5kAyi0qT7N6M5297I8" class="w-16 rounded-full ring-slate-800 ring-4 ring-offset-0 mr-4">
-        <h1 class="font-main font-bold text-xl text-white">Wesley Matthee</h1>
-      </div>
-      <h1 class="font-main font-bold text-xl text-slate-800">wrmatthee@gmail.com</h1>
-      <h1 class="font-main font-bold text-xl text-slate-800">647 378 6263</h1>
-    </div>
+    <ng-container *ngFor="let dev of developers">
+      <app-dev-contact class="w-full flex justify-center" [img]="dev.img" [name]="dev.name" [email]="dev.email" [phone]="dev.phone"></app-dev-contact>
+    </ng-container>
   </div>
 </div>
 
