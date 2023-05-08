@@ -1,5 +1,6 @@
 <div class="flex flex-col items-center justify-center">
   <app-img-uploader (onUpload)="onUpload($event)" [loading]="loading" [btnText]="btnText"></app-img-uploader>
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
   <app-stats [prediction]="prediction"></app-stats>
   <app-dev-list *ngIf="prediction.length > 0"></app-dev-list>
 </div>

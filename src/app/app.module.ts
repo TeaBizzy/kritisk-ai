@@ -9,6 +9,7 @@ import { DevListComponent } from './dev-list/dev-list.component';
 import { ImgUploaderComponent } from './img-uploader/img-uploader.component';
 import { StatsComponent } from './stats/stats.component';
 import { DevContactComponent } from './dev-contact/dev-contact.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DevContactComponent } from './dev-contact/dev-contact.component';
     ImgUploaderComponent,
     StatsComponent,
     DevContactComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule
